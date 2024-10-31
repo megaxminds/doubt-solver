@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f9fa; /* Light background color for contrast */
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    color: #007bff; /* Primary color for the title */
+}
+
+.input-group {
+    max-width: 600px; /* Limit the width of the input group */
+    margin: auto; /* Center the input group */
+}
+
+.alert {
+    margin-top: 20px; /* Space above the answer alert */
+}
