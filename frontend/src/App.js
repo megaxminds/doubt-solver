@@ -36,7 +36,7 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [showWelcome, setShowWelcome] = useState(false);
 
-    const expectedToken = "12345"; // Replace with your actual token
+    const expectedToken = "megaxminds@970"; // Replace with your actual token
 
     const handleLogin = (e) => {
         e.preventDefault();
