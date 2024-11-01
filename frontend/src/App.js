@@ -105,7 +105,7 @@ function App() {
                     )}
                     {/* Messenger link for getting token */}
                     <div className="text-center">
-                        <p>Need a token? <a href="https://m.me/135568919639830" target="_blank" rel="noopener noreferrer">Contact us on Messenger</a></p>
+                        <p>Need a token? <a href="https://www.facebook.com/megaxminds/" target="_blank" rel="noopener noreferrer">Contact us on Facebook</a></p>
                     </div>
                 </>
             ) : (
