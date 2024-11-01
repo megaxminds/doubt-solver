@@ -3,11 +3,12 @@ import './App.css';
 
 const trackSearchEvent = (data) => {
     if (window.gtag) {
+        console.log('Google Analytics is loaded');
         window.gtag('event', 'search', {
             event_category: 'User Actions',
             event_label: `${data.question}, Grade: ${data.grade}, Subject: ${data.subject}`,
             value: 1
-        console.log('Google Analytics is loaded');
+        
         });
     } else {
         console.error('Google Analytics is not loaded');
