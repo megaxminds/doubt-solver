@@ -80,7 +80,7 @@ function App() {
 
     return (
         <div className="container mt-5" style={{ maxWidth: "900px", margin: "0 auto", padding: "1rem" }}>
-            <h1 className="text-center mb-4"> 24x7 Doubt Assistant by Megaminds </h1>
+            <h1 className="text-center mb-4"> 24x7 Doubt Assistant</h1>
             {!isAuthenticated ? (
                 <>
                     <form onSubmit={handleLogin} className="text-center">
