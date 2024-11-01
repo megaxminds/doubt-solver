@@ -10,7 +10,7 @@ function App() {
         e.preventDefault();
         setLoading(true); // Show loading state
         try {
-            const response = await fetch("http://localhost:5000/solve_doubt", {
+            const response = await fetch("https://doubt-solver-1.onrender.com/solve_doubt", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question }),
