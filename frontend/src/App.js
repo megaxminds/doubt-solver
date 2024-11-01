@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import './App.css';
 
+const trackSearchEvent = (searchTerm) => {
+    if (window.gtag) {
+        window.gtag('event', 'search', {
+            event_category: 'User Actions',
+            event_label: searchTerm,
+            value: 1
+        });
+    } else {
+        console.error('Google Analytics is not loaded');
+    }
+};
+
 function trackQuestionSubmit() {
     window.gtag('event', 'question_submit', {
         event_category: 'User Actions',
@@ -9,13 +21,14 @@ function trackQuestionSubmit() {
 }
 
 function App() {
+    const [searchTerm, setSearchTerm] = useState('');
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        trackQuestionSubmit();
+        trackSearchEvent(searchTerm);
         setLoading(true); // Show loading state
         try {
             const response = await fetch("https://doubt-solver-1.onrender.com/solve_doubt", {
