@@ -21,14 +21,15 @@ function trackQuestionSubmit() {
 }
 
 function App() {
-    const [searchTerm, setSearchTerm] = useState('');
+    //const [searchTerm, setSearchTerm] = useState('');
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        trackSearchEvent(searchTerm);
+        trackSearchEvent(question);
+        trackQuestionSubmit()
         setLoading(true); // Show loading state
         try {
             const response = await fetch("https://doubt-solver-1.onrender.com/solve_doubt", {
