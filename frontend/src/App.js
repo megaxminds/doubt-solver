@@ -7,7 +7,7 @@ const trackSearchEvent = (data) => {
             event_category: 'User Actions',
             event_label: `${data.question}, Grade: ${data.grade}, Subject: ${data.subject}`,
             value: 1
-            console.error('Google Analytics is loaded');
+        console.error('Google Analytics is loaded');
         });
     } else {
         console.error('Google Analytics is not loaded');
