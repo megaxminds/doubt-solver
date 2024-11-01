@@ -36,7 +36,7 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [showWelcome, setShowWelcome] = useState(false);
 
-    const expectedToken = "megaxminds@970"; // Replace with your actual token
+    const expectedToken = "12345"; // Replace with your actual token
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -53,24 +53,22 @@ function App() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = { grade, subject, question }; // Exclude contact number and email
+        const data = { grade, subject, question };
 
         trackSearchEvent(data);
         trackQuestionSubmit(data);
         setLoading(true);
 
-        const question1 = `${question} Remember to maintain a conversational tone and provide comprehensive responses for ${grade} student and subject ${subject}`;
-
         try {
             const response = await fetch("https://doubt-solver-1.onrender.com/solve_doubt", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question}),
+                body: JSON.stringify({ question: question + ' Remember to maintain a conversational tone and provide comprehensive responses for ' + grade +' student'+ ' and subject '+subject }),
             });
             const responseData = await response.json();
             setAnswer(responseData.answer);
             console.log(answer);
-            console.log(question1);
+
         } catch (error) {
             setAnswer("Error fetching answer. Please try again.");
         } finally {
@@ -80,7 +78,7 @@ function App() {
 
     return (
         <div className="container mt-5" style={{ maxWidth: "900px", margin: "0 auto", padding: "1rem" }}>
-            <h1 className="text-center mb-4"> 24x7 Doubt Assistant</h1>
+            <h1 className="text-center mb-4">Doubt Solver</h1>
             {!isAuthenticated ? (
                 <>
                     <form onSubmit={handleLogin} className="text-center">
@@ -105,6 +103,10 @@ function App() {
                             Welcome! Redirecting to the doubt solver...
                         </div>
                     )}
+                    {/* Messenger link for getting token */}
+                    <div className="text-center">
+                        <p>Need a token? <a href="https://m.me/135568919639830" target="_blank" rel="noopener noreferrer">Contact us on Messenger</a></p>
+                    </div>
                 </>
             ) : (
                 <form onSubmit={handleSubmit} className="text-center transition-effect">
@@ -129,7 +131,7 @@ function App() {
                             required
                         >
                             <option value="">Select Subject</option>
-                            {["Math", "Science", "Computer Science","English", "History", "Geography", "General Knowledge", "Other"].map((subjectOption, index) => (
+                            {["Math", "Science", "Computer Science", "English", "History", "Geography", "General Knowledge", "Other"].map((subjectOption, index) => (
                                 <option key={index} value={subjectOption}>{subjectOption}</option>
                             ))}
                         </select>
@@ -170,3 +172,4 @@ function App() {
 }
 
 export default App;
+
