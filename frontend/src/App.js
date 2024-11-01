@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import './App.css';
 
+function trackQuestionSubmit() {
+    window.gtag('event', 'question_submit', {
+        event_category: 'User Actions',
+        event_label: 'Question Submitted'
+    });
+}
+
 function App() {
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
@@ -8,6 +15,7 @@ function App() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        trackQuestionSubmit();
         setLoading(true); // Show loading state
         try {
             const response = await fetch("https://doubt-solver-1.onrender.com/solve_doubt", {
