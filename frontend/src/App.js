@@ -155,7 +155,7 @@ function App() {
                         <div className="alert alert-info" role="alert" style={{ textAlign: "left" }}>
                             <strong>Answer:</strong> {answer} <br />
                             <div className="alert alert-info" role="alert" style={{ textAlign: "center" }}>
-                                <p>Want personalized doubt resolution? Reach out to us <a href="https://m.me/135568919639830" target="_blank" rel="noopener noreferrer">here</a>.
+                                <p>Want personalized doubt resolution? Reach out to us <a href="https://megaxminds.github.io/courses/" target="_blank" rel="noopener noreferrer">here</a>.
                                 You can also let us know if there is any scope for improvement</p>
                                 <p>Follow us to be a part of future giveaways: 
                                     <a href="https://www.facebook.com/megaxminds/" target="_blank" rel="noopener noreferrer"> Facebook</a>, 
