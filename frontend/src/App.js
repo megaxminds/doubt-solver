@@ -63,7 +63,7 @@ function App() {
             const response = await fetch("https://doubt-solver-1.onrender.com/solve_doubt", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question: question + ' Remember to maintain a conversational tone and provide comprehensive responses for ' + grade +' student'+ ' and subject '+subject }),
+                body: JSON.stringify({ question}),
             });
             const responseData = await response.json();
             setAnswer(responseData.answer);
