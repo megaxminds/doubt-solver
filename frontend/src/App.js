@@ -78,7 +78,7 @@ function App() {
 
     return (
         <div className="container mt-5" style={{ maxWidth: "900px", margin: "0 auto", padding: "1rem" }}>
-            <h1 className="text-center mb-4">Doubt Solver</h1>
+            <h1 className="text-center mb-4">24x7 Doubt Assistant</h1>
             {!isAuthenticated ? (
                 <>
                     <form onSubmit={handleLogin} className="text-center">
@@ -100,7 +100,7 @@ function App() {
                     </form>
                     {showWelcome && (
                         <div className="alert alert-success welcome-message">
-                            Welcome! Redirecting to the doubt solver...
+                            Welcome! Redirecting to the doubt assistant...
                         </div>
                     )}
                     {/* Messenger link for getting token */}
