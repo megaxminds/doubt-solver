@@ -3,8 +3,9 @@ import os
 from dotenv import load_dotenv
 import openai
 from groq import Groq  # Assuming Groq is an actual API, adjust if not
-
 from flask_cors import CORS
+import logging
+import re
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -22,7 +23,7 @@ client = Groq(api_key=groq_api_key)
 # System prompt setup
 system_prompt = {
     "role": "system",
-    "content": "You are a helpful assistant. You reply with very short answers."
+    "content": "You are a helpful assistant."
 }
 chat_history = [system_prompt]  # Initialize chat history
 
@@ -42,26 +43,46 @@ def get_groq_answer(question):
     
     # Generate a response
     response = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",  # Change model as needed
+        model="llama3-groq-70b-8192-tool-use-preview",  # Change model as needed
         messages=chat_history,
-        max_tokens=1000,
-        temperature=1.2
+        max_tokens=500,
+        temperature=1.2,
+        tool_choice="none"  # Add this line to get JSON output
     )
     
     # Extract and store response
     assistant_message = response.choices[0].message.content
     chat_history.append({"role": "assistant", "content": assistant_message})
     
-    return assistant_message
+    # Process the response to get a more conversational output
+    output = " ".join(line.strip() for line in assistant_message.splitlines())
+    
+    return output
+
 
 # Route to solve a doubt
 @app.route("/solve_doubt", methods=["POST"])
 def solve_doubt():
     question = request.json.get("question")  # Get the question from JSON payload
-    # Decide on which model to use based on a condition or test with both
-    # Example: using Groq
-    answer = get_groq_answer(question)
-    return jsonify({"answer": answer})
+    
+    if not question:
+        return jsonify({"error": "Question is required."}), 400  # Return error if question is missing
+
+    try:
+        # Using Groq for the example
+        answer = get_groq_answer(question)
+        
+        # Add some additional metadata to the response
+        response = {
+            "answer": answer,
+            "question": question
+        }
+        
+        return jsonify(response)
+
+    except Exception as e:
+        logging.error(f"Error processing question: {e}")
+        return jsonify({"error": "Internal Server Error"}), 500
 
 if __name__ == "__main__":
     # Bind to the appropriate host and port for production
